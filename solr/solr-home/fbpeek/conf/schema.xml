@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+
+<schema name="census" version="1.1">
+
+    <!--
+        Fields
+    -->
+    <field name="id"              type="int"      indexed="true"  stored="true"   multiValued="false" />
+    <field name="content_type"    type="string"   indexed="true"  stored="true"   multiValued="false" />
+    <field name="content"         type="text"     indexed="true"  stored="true"  multiValued="false" />
+    <field name="date"            type="date"     indexed="true"  stored="true"  multiValued="false" />
+
+    <!-- 
+        Copy fields 
+    -->
+
+    <!-- 
+        Internal schema configuration settings 
+    -->
+
+    <!-- Used by Solr for optimistic concurrency -->
+    <field name="_version_"            type="long"     indexed="true"  stored="true"/>
+
+    <!-- field to use to determine and enforce document uniqueness. -->
+    <uniqueKey>id</uniqueKey>
+
+    <!-- field for the QueryParser to use when an explicit fieldname is absent -->
+    <defaultSearchField>content</defaultSearchField>
+
+    <!-- SolrQueryParser configuration: defaultOperator="AND|OR" -->
+    <solrQueryParser defaultOperator="OR"/>
+
+    <!-- 
+        Field Types
+    -->
+    
+    <!-- Simple text analysis -->
+    <fieldType name="text" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <!-- Simple types -->
+    <fieldtype name="string" class="solr.StrField"      sortMissingLast="true" omitNorms="true"/>
+    <fieldType name="long"   class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="int"    class="solr.TrieIntField"  precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="date"   class="solr.TrieDateField" precisionStep="6" positionIncrementGap="0"/>
+
+</schema>
+
