@@ -8,7 +8,7 @@
  * Controller of the fbPeekApp
  */
 angular.module('fbPeekApp')
-  .controller('MainCtrl', ['$scope', '$filter', '$state', 'search', 'API_HOST', function ($scope, $filter, $state, search, API_HOST) {
+  .controller('MainCtrl', ['$scope', '$filter', '$state', 'search', function ($scope, $filter, $state, search) {
     // Model variables
     $scope.dateFields = [];
     $scope.selectedDateField = $scope.dateFields.length > 0 ? $scope.dateFields[0].field : null;
@@ -128,7 +128,7 @@ angular.module('fbPeekApp')
 
     // Query solr using the current form state
     function executeSearch() {
-      var query = '{!parent which="content_type:ppt" score="total"}' + $scope.currentQuery;
+      var query = $scope.currentQuery;
       var params = {
         q: query,
         wt: 'json',

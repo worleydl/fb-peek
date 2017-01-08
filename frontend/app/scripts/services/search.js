@@ -11,14 +11,12 @@ angular.module('fbPeekApp')
   .service('search', ['$http', '$log', '$q', 'SOLR_HOST', function ($http, $log, $q, SOLR_HOST) {
     var factory = {};
 
-    var SOLR_URL = 'http://' + SOLR_HOST + ':8983/solr/documents/select?';
+    var SOLR_URL = 'http://' + SOLR_HOST + ':8983/solr/fbpeek/select?';
 
     factory.query = function(params) {
       $log.info('Searching for: ' + params.q);
 
       var deferred = $q.defer();
-
-      var auth = $base64.encode(SOLR_USER + ':' + SOLR_PASS);
 
       $http({
         method: 'GET',

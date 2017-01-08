@@ -52,13 +52,10 @@
         <pagination></pagination>
  
         <div class="resultListing" ng-repeat="result in resultSet">
-            <div class="resultTitle">{{result.content_type}}</div>
-            <div class="row">
-              <div class="col-sm-4"><span class="resultLabel">Date: </span>{{result.date | date:dtFormat}}</div>
-              <div class="col-sm-4"><span class="resultLabel">Members: </span>{{result.content_rel}}</div>
-              <div class="col-sm-4"><span class="resultLabel">Meta: </span>{{result.content_meta}}</div>
-            </div>
-          <div class="resultBody">{{result.content}}</div>
+          <div class="resultBody"><span ng-if="result.content_meta">{{result.content_meta}}:&nbsp;</span>{{result.content}}</div>
+            <div><span class="resultLabel">Type: </span>{{result.content_type}}</div>
+            <div><span class="resultLabel">Date: </span>{{result.date | date:dtFormat}}</div>
+            <div ng-if="result.content_ref"><span class="resultLabel">Members: </span>{{result.content_ref}}</div>
         </div>
 
         <pagination></pagination>
