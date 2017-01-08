@@ -1,0 +1,24 @@
+<div ng-show="getActive()">
+	<div class="container">
+	  <!-- Main search form -->
+	  <div class="row">
+	  	<div class="col-md-4">
+	  		<h1>FB Archive Search</h1>
+	  	</div>
+	  	<div class="col-md-6" id="searchbox">
+	  		<div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" handle-enter="submitSearch()" ng-model="mainSearchString">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" ng-click="submitSearch()">Search</button>
+          </span>
+        </div><!-- /input-group -->
+		  </div>
+	  </div>
+	</div>
+
+  <!-- Result Set rendering -->
+  <div ng-include="'views/templates/results.html'"></div>
+</div>
+
+<!-- Renders substates -->
+<div ui-view></div>

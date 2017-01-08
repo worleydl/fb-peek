@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{facetName}}</h3>
+  </div>
+  <div class="panel-body">
+    <label><input type="checkbox" ng-model="selectAll" ng-change="selectAllChanged()"> All</label>
+		<hr style="margin: 0;"/>
+		<div ng-repeat="(key, value) in facetCounts">
+		  <label><input type="checkbox" ng-change="facetChanged()" ng-model="value.selected"> {{key}}: {{value.count}}</label>
+		</div>
+  </div>
+</div>

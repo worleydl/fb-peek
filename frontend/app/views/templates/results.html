@@ -1,0 +1,68 @@
+<div class="container" id="results-summary">
+  <!-- Search details -->
+  <div class="row" ng-show="$parent.currentQuery">
+    <div class="col-md-12">
+      <h4>Search Results for: <small>{{currentQuery}} ({{numFound}} of {{unfilteredFound}})</small></h4>
+      <h5>
+        Filtered By:
+        <span ng-repeat="filter in $parent.refinementFilters">
+          {{filter}} 
+          <a href="" ng-click="$parent.removeRefine(filter)">(x)</a>
+        </span> 
+
+        <span ng-if="$parent.dtFilter">
+          Date Range {{$parent.dtFilter.from | date:'MM/dd/yyyy'}} to {{$parent.dtFilter.until | date:'MM/dd/yyyy'}}
+          <a href="" ng-click="$parent.removeDt()">(x)</a>
+        </span>
+
+        <span ng-if="!$parent.isFiltered()">(none)</span>
+      </h5>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resultSet.length">
+  <div class="container">
+    <div class="row">
+      <!-- Side pane filtering -->
+      <div class="col-sm-3">
+        <!-- Refinement by keyword -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Refine by:</h3>
+          </div>
+          <div class="panel-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Keywords" handle-enter="submitRefine()" ng-model="$parent.refineSearchString">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="submitRefine()">Refine</button>
+              </span>
+            </div><!-- /input-group -->
+          </div>
+        </div>
+
+        <!-- Facet filters -->
+        <div ng-repeat="facet in $parent.facetCounts">
+          <facet facet-name="facet.display" facet-counts="facet.counts">
+        </div>
+      </div>
+      
+      <!-- Result set listing -->
+      <div class="col-xs-9">
+        <pagination></pagination>
+ 
+        <div class="resultListing" ng-repeat="result in resultSet">
+            <div class="resultTitle">{{result.content_type}}</div>
+            <div class="row">
+              <div class="col-sm-4"><span class="resultLabel">Date: </span>{{result.date | date:dtFormat}}</div>
+              <div class="col-sm-4"><span class="resultLabel">Members: </span>{{result.content_rel}}</div>
+              <div class="col-sm-4"><span class="resultLabel">Meta: </span>{{result.content_meta}}</div>
+            </div>
+          <div class="resultBody">{{result.content}}</div>
+        </div>
+
+        <pagination></pagination>
+      </div>
+    </div>
+  </div>
+</div>

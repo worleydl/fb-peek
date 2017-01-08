@@ -1,0 +1,28 @@
+<div class="results-header row">
+  <ul class="pull-right pagination" uib-pagination max-size="5" total-items="numFound" ng-model="$parent.$parent.currentPage" ng-change="pageChanged()" template-url="views/templates/pagination.html"></ul>
+  <div class="col-md-2">
+
+  <!-- Current page info -->
+  <h5>{{$parent.start + 1}} - {{$parent.getPageEnd()}} of {{$parent.numFound}}</h5>
+
+  </div>
+  <div class="col-md-7">
+
+  <!-- Sorting -->
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Sort by:</label>
+      <div class="col-sm-6">
+        <select ng-model="$parent.$parent.selectedSort" ng-init="$parent.$parent.selectedSort = sortOptions[1]"
+          ng-options="option.display for option in sortOptions" ng-change="sortChanged()" class="form-control">
+        </select>
+      </div>
+    </div>
+  </form>
+
+  </div>
+
+  <div class="clearfix"></div>
+</div>
+
+
