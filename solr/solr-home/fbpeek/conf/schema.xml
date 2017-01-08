@@ -5,9 +5,11 @@
     <!--
         Fields
     -->
-    <field name="id"              type="int"      indexed="true"  stored="true"   multiValued="false" />
-    <field name="content_type"    type="string"   indexed="true"  stored="true"   multiValued="false" />
+    <field name="id"              type="int"      indexed="true"  stored="true"  multiValued="false" />
+    <field name="content_type"    type="string"   indexed="true"  stored="true"  multiValued="false" />
     <field name="content"         type="text"     indexed="true"  stored="true"  multiValued="false" />
+    <field name="content_meta"    type="string"   indexed="true"  stored="true"  multiValued="false" />
+    <field name="content_ref"     type="string"   indexed="true"  stored="true"  multiValued="false" />
     <field name="date"            type="date"     indexed="true"  stored="true"  multiValued="false" />
 
     <!-- 
