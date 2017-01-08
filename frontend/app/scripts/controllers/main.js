@@ -149,7 +149,7 @@ angular.module('fbPeekApp')
       // Apply refinement filters
       if($scope.refinementFilters.length > 0) {
         angular.forEach($scope.refinementFilters, function(filter) {
-          params['fq'].push('{!parent which="content_type:ppt"}' + filter);
+          params['fq'].push(filter);
         });
       }
       
