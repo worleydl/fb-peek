@@ -1,5 +1,18 @@
 version: '2'
 services:
+  frontend:
+    build: frontend/.
+    env_file:
+      - frontend/config.env
+    ports:
+      - "8080:80"
+  indexer:
+    build: indexer/.
+    command: /bin/bash run-it.sh
+    links:
+        - solr
+    volumes:
+        - ./archive:/data
   solr:
     build: ./solr
     ports:

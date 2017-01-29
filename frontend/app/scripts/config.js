@@ -1,3 +1,3 @@
 angular.module('cfg', [])
-  .constant('SOLR_HOST', '192.168.1.25');
+  .constant('SOLR_HOST', 'DYN_SOLR_HOST');
 

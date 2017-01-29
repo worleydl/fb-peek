@@ -1,17 +1,19 @@
 from bs4 import BeautifulSoup
 from datetime import datetime
+
 import requests
 
 batch_size = 250
-solr_ep = 'http://192.168.1.25:8983/solr/fbpeek'
+solr_ep = 'http://solr:8983/solr/fbpeek'
 
-archive_path = '../archive/html'
+archive_path = '/data/html'
 
 messages_file = 'messages.htm'
 timeline_file = 'timeline.htm'
 
 # Sample date from archive - Thursday, March 17, 2005 at 8:08pm EST
-dt_format = '%A, %B %d, %Y at %I:%M%p %Z'
+# We strip the timezone
+dt_format = '%A, %B %d, %Y at %I:%M%p'
 
 identifier = 0
 
@@ -32,7 +34,8 @@ for element in elements:
 
     # Meta tags are dates, update the current timestamp
     if 'meta' in classes:
-        curr_date = datetime.strptime(element.get_text(), dt_format)
+        curr_date = datetime.strptime(element.get_text().rsplit(' ', 1)[0], dt_format)
+
     # Everything else is data to index
     else:
         if curr_date is None:
@@ -71,7 +74,7 @@ for thread in threads:
         meta = element.find('span', {'class' : 'meta'}).get_text()
         content = element.findNext('p').get_text()
 
-        curr_date = datetime.strptime(str(meta), dt_format)
+        curr_date = datetime.strptime(str(meta).rsplit(' ', 1)[0], dt_format)
 
         msg = {
             'id': identifier,
