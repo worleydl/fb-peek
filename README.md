@@ -1,6 +1,8 @@
 #FB-Peek
 This project provides a set of tools to index and search your personal archive of Facebook data.
 
+_Note:_ Updated 7/11/18 to get the build process working again but I haven't checked to see if the FB data archive format has changed.
+
 ## What you need
 * Your Facebook archive available under Facebook Settings->General->Download a copy of your data
 * A Docker environment with docker-compose configured (otherwise some know-how on running each service individually)

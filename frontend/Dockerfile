@@ -1,4 +1,4 @@
-FROM worleydl/nginx-grunt:v1
+FROM worleydl/nginx-grunt:v2
 
 # Copy source to nginx host
 ADD . /code
